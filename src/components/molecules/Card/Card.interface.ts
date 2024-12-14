@@ -1,60 +1,99 @@
 import React from 'react'
-
 import { TextProps } from '../../atoms/Text/Text.interface'
 
 export interface CardProps {
   /**
-   * The main title of the card.
+   * Judul utama yang ditampilkan di card.
    * @type {string}
    * @required
-   * @example "Card Title"
+   * @example
+   * <Card title="Paket Premium" />
    */
   title: string
+
   /**
-   * An optional element to be placed after the title.
+   * Elemen tambahan yang ditampilkan setelah judul.
+   * Berguna untuk menambahkan icon atau badge.
    * @type {React.ReactNode}
-   * @optional
-   * @example <Icon />
+   * @example
+   * <Card
+   *   title="Item Baru"
+   *   afterTitle={<Badge>New</Badge>}
+   * />
    */
   afterTitle?: React.ReactNode
+
   /**
-   * The text properties for the title.
-   * @type {TextProps}
-   * @optional
-   * @example { size: 'lg', color: 'primary' }
+   * Props untuk mengkustomisasi tampilan judul.
+   * Menggunakan props dari komponen Text.
+   * @type {Omit<TextProps, 'children'>}
+   * @example
+   * <Card
+   *   title="Judul Card"
+   *   titleTextProps={{
+   *     size: 'xl',
+   *     weight: 'bold',
+   *     color: 'primary'
+   *   }}
+   * />
    */
   titleTextProps?: Omit<TextProps, 'children'>
+
   /**
-   * An optional subtitle for the card.
+   * Subjudul yang ditampilkan di bawah judul utama.
    * @type {string}
-   * @optional
-   * @example "Card Subtitle"
+   * @example
+   * <Card
+   *   title="Produk A"
+   *   subtitle="Deskripsi singkat produk"
+   * />
    */
   subtitle?: string
+
   /**
-   * An optional thumbnail image for the card.
+   * URL gambar thumbnail yang ditampilkan di card.
    * @type {string}
-   * @example "https://via.placeholder.com/150"
+   * @example
+   * <Card
+   *   title="Artikel"
+   *   thumbnail="/images/article-cover.jpg"
+   * />
    */
   thumbnail?: string
+
   /**
-   * A boolean to determine if the thumbnail should have a margin.
+   * Mengatur margin untuk thumbnail.
+   * Ketika true, thumbnail akan memiliki jarak dari tepi card.
    * @type {boolean}
-   * @optional
    * @default false
+   * @example
+   * <Card
+   *   thumbnail="/image.jpg"
+   *   hasMarginThumbnail
+   * />
    */
   hasMarginThumbnail?: boolean
+
   /**
-   * The children of the card.
+   * Konten utama yang ditampilkan di dalam card.
    * @type {React.ReactNode}
-   * @optional
+   * @example
+   * <Card title="Profile">
+   *   <p>Informasi profile user...</p>
+   *   <Button>Edit Profile</Button>
+   * </Card>
    */
   children?: React.ReactNode
+
   /**
-   * An optional class name for the card.
+   * Class CSS tambahan menggunakan Tailwind CSS.
+   * Untuk kustomisasi tampilan card.
    * @type {string}
-   * @optional
-   * @example "my-custom-class"
+   * @example
+   * <Card
+   *   title="Custom Card"
+   *   className="hover:shadow-lg transition-shadow"
+   * />
    */
   className?: string
 }

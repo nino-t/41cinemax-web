@@ -1,16 +1,23 @@
 export interface RatingProps {
   /**
-   * The rating to be displayed.
+   * Nilai rating yang akan ditampilkan.
+   * Mendukung angka desimal untuk setengah bintang.
    * @type {number}
    * @required
-   * @example 4.5
+   * @example
+   * <Rating rating={4.5} />
    */
   rating: number
+
   /**
-   * An optional class name for the rating.
+   * Class CSS tambahan menggunakan Tailwind CSS.
+   * Untuk kustomisasi tampilan rating stars.
    * @type {string}
-   * @optional
-   * @example "my-custom-class"
+   * @example
+   * <Rating
+   *   rating={4}
+   *   className="gap-1 text-yellow-400"
+   * />
    */
   className?: string
 }
