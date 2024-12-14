@@ -1,5 +1,11 @@
 export interface FlexboxProps {
   /**
+   * The type of the flexbox.
+   * @type {'flex' | 'inline-flex' | undefined}
+   * @default 'flex'
+   */
+  type?: 'flex' | 'inline-flex'
+  /**
    * The content of the flexbox.
    * @type React.ReactNode
    * @example <Flexbox>...</Flexbox>

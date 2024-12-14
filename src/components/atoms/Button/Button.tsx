@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { Loader2 } from 'lucide-react'
-
 import { ButtonProps } from './Button.interface'
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,7 +15,9 @@ const Button: React.FC<ButtonProps> = ({
   loading = false,
   ...props
 }) => {
-  const baseClasses = `flex justify-center py-2 px-4 border border-transparent ${rounded ? 'rounded-full' : 'rounded-md'} shadow-sm text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2`
+  const baseClasses = `flex justify-center py-2 px-4 border border-transparent ${
+    rounded ? 'rounded-full' : 'rounded-md'
+  } shadow-sm text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2`
 
   const variantClasses = {
     primary:
@@ -29,15 +29,16 @@ const Button: React.FC<ButtonProps> = ({
     text: 'text-yellow-600 bg-transparent border-transparent'
   }
 
-  const widthClass = fullWidth ? 'w-full' : ''
-
-  const disabledClasses =
-    disabled || loading ? 'opacity-50 cursor-not-allowed' : ''
-
-  const iconClasses = icon ? 'flex items-center justify-center gap-2' : ''
-
-  const combinedClasses =
-    `${baseClasses} ${variantClasses[variant]} ${widthClass} ${disabledClasses} ${iconClasses} ${className}`.trim()
+  const combinedClasses = [
+    baseClasses,
+    variantClasses[variant],
+    fullWidth ? 'w-full' : '',
+    disabled || loading ? 'opacity-50 cursor-not-allowed' : '',
+    icon ? 'flex items-center justify-center gap-2' : '',
+    className
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <button

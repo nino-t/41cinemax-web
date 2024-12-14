@@ -4,6 +4,7 @@ import { FlexboxProps } from './Flexbox.interface'
 
 const Flexbox: React.FC<FlexboxProps> = ({
   children,
+  type = 'flex',
   direction = 'row',
   justify = 'start',
   align = 'start',
@@ -14,7 +15,7 @@ const Flexbox: React.FC<FlexboxProps> = ({
 }) => {
   const flexClasses = useMemo(() => {
     return [
-      'flex',
+      type,
       `flex-${direction}`,
       `justify-${justify}`,
       `items-${align}`,
@@ -24,7 +25,7 @@ const Flexbox: React.FC<FlexboxProps> = ({
     ]
       .filter(Boolean)
       .join(' ')
-  }, [direction, justify, align, wrap, gap, className])
+  }, [type, direction, justify, align, wrap, gap, className])
 
   return (
     <div className={flexClasses} {...props}>
