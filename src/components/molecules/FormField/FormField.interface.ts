@@ -24,7 +24,7 @@ export interface FormFieldProps {
    *   label="Nomor Telepon"
    * />
    */
-  label: string
+  label?: string
 
   /**
    * Komponen input yang akan digunakan dalam form field.

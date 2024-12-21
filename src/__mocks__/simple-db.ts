@@ -1,39 +1,46 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { promises as fs } from 'fs'
-import path from 'path'
-
 type Query<T> = Partial<T>
 
 export class SimpleDB<Schema extends Record<string, any[]>> {
-  private filename: string
+  private dbName: string
   private data: Schema | null
+  private initialData: Partial<Schema>
 
-  constructor(filename: string) {
-    this.filename = filename
+  constructor(dbName: string, initialData: Partial<Schema> = {} as any) {
+    this.dbName = dbName
     this.data = null
+    this.initialData = initialData
   }
 
   async init(): Promise<SimpleDB<Schema>> {
     try {
-      const content = await fs.readFile(this.filename, 'utf8')
-      this.data = JSON.parse(content)
-    } catch (error: any) {
-      if (error.code === 'ENOENT') {
-        // File doesn't exist, create new database with empty collections
-        this.data = Object.create(null) as Schema
-        await this.write()
+      const content = localStorage.getItem(this.dbName)
+      if (content) {
+        this.data = JSON.parse(content)
       } else {
-        throw error
+        // Gunakan initial data jika tidak ada data di localStorage
+        this.data = { ...Object.create(null), ...this.initialData } as Schema
+        await this.write()
       }
+    } catch (error) {
+      // Jika terjadi error, gunakan initial data
+      console.error('Failed to initialize database:', error)
+      this.data = { ...Object.create(null), ...this.initialData } as Schema
+      await this.write()
     }
     return this
   }
 
   private async write(): Promise<SimpleDB<Schema>> {
-    const dirname = path.dirname(this.filename)
-    await fs.mkdir(dirname, { recursive: true })
-    await fs.writeFile(this.filename, JSON.stringify(this.data, null, 2))
+    localStorage.setItem(this.dbName, JSON.stringify(this.data, null, 2))
+    return this
+  }
+
+  // Reset database ke initial values
+  async reset(): Promise<SimpleDB<Schema>> {
+    this.data = { ...Object.create(null), ...this.initialData } as Schema
+    await this.write()
     return this
   }
 

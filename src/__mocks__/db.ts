@@ -1,4 +1,5 @@
 import { SimpleDB } from './simple-db'
+import dbJSON from './db.json'
 
 type DBSchema = {
   users: Array<{
@@ -23,7 +24,7 @@ type DBSchema = {
     director: string
     country: string
     duration: number
-    is_promoted: boolean
+    is_promoted?: boolean
   }>
   schedules: Array<{
     id: number
@@ -43,6 +44,7 @@ type DBSchema = {
   }>
 }
 
-const db = await new SimpleDB<DBSchema>('./db.json').init()
+const db = new SimpleDB<DBSchema>('41cinemax_db', dbJSON)
+await db.init()
 
 export default db

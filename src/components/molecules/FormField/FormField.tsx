@@ -20,9 +20,11 @@ const FormField: React.FC<FormFieldProps> = ({
 
   return (
     <div className={`mb-4 ${className}`}>
-      <Text as="label" weight="medium" className="mb-1 block">
-        {label}
-      </Text>
+      {!!label && (
+        <Text as="label" weight="medium" className="mb-1 block">
+          {label}
+        </Text>
+      )}
       {React.isValidElement(children) &&
         React.cloneElement(children, {
           ...(children.props || {}),

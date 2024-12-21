@@ -5,7 +5,7 @@ import { generateFakeSchedule } from './movie-mock-utils'
  * Delay 3 detik
  * @returns
  */
-const delay = () => new Promise((resolve) => setTimeout(() => resolve, 3000))
+const delay = () => new Promise((resolve) => setTimeout(resolve, 3000))
 
 /**
  * Mock service yang digunakan untuk login

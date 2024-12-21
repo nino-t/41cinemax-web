@@ -4,12 +4,14 @@
       "id": 1,
       "name": "John Doe",
       "email": "johndoe@example.com",
+      "phone": "081234567890",
       "password": "123456"
     },
     {
       "id": 2,
       "name": "Eriksen Smith",
       "email": "eriksen.smith@example.com",
+      "phone": "081234567891",
       "password": "808080"
     }
   ],
