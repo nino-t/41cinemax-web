@@ -1,0 +1,148 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "name": "Eriksen Smith",
+      "email": "eriksen.smith@example.com",
+      "password": "808080"
+    }
+  ],
+  "movies": [
+    {
+      "id": 1,
+      "title": "Inception",
+      "poster": {
+        "landscape": "/posters/landscape/inception.webp",
+        "portrait": "/posters/portrait/inception.jpg"
+      },
+      "trailer_url": "https://www.youtube.com/watch?v=YoHD9XEInc0",
+      "genres": ["Action", "Sci-Fi", "Thriller"],
+      "rating": 4.8,
+      "release_date": "2010-07-16",
+      "synopsis": "Seorang pencuri yang memiliki kemampuan untuk memasuki mimpi orang lain dan mencuri rahasia berharga dari alam bawah sadar. Saat dihadapkan dengan misi terakhir yang sulit, ia harus menanamkan ide di pikiran targetnya. Namun, semakin dalam ia masuk ke dunia mimpi, semakin berbahaya tantangan yang dihadapi, mengaburkan garis antara realitas dan imajinasi, serta mempertaruhkan nyawa dan kewarasannya sendiri.",
+      "director": "Christopher Nolan",
+      "country": "USA",
+      "duration": 148
+    },
+    {
+      "id": 2,
+      "title": "The Shawshank Redemption",
+      "poster": {
+        "landscape": "/posters/landscape/the-shawshank-redemption.jpg",
+        "portrait": "/posters/portrait/the-shawshank-redemption.jpg"
+      },
+      "trailer_url": "https://www.youtube.com/watch?v=6hB3S9bIaco",
+      "genres": ["Drama"],
+      "rating": 4.9,
+      "release_date": "1994-09-23",
+      "synopsis": "Seorang bankir bernama Andy Dufresne dipenjara seumur hidup atas tuduhan pembunuhan yang tidak pernah dilakukannya. Di dalam Penjara Shawshank yang terkenal kejam, ia menemukan harapan dan persahabatan sejati dengan sesama narapidana bernama Red. Dengan kecerdasan dan ketekunan, Andy secara perlahan mengubah kehidupan para tahanan dan mengguncang fondasi penjara. Kisah ini mengangkat tema keadilan, pengampunan, dan kekuatan harapan dalam menghadapi kesulitan.",
+      "director": "Frank Darabont",
+      "country": "USA",
+      "duration": 142
+    },
+    {
+      "id": 3,
+      "title": "The Godfather",
+      "poster": {
+        "landscape": "/posters/landscape/the-godfather.jpg",
+        "portrait": "/posters/portrait/the-godfather.jpg"
+      },
+      "trailer_url": "https://www.youtube.com/watch?v=sY1S34973zA",
+      "genres": ["Crime", "Drama"],
+      "rating": 4.9,
+      "release_date": "1972-03-24",
+      "synopsis": "The Godfather menceritakan kisah keluarga mafia Corleone di New York pada era 1940-an hingga 1950-an. Vito Corleone, kepala keluarga, berjuang menjaga kehormatan dan kekuasaan klannya di tengah persaingan dengan keluarga mafia lainnya. Ketika kekuasaan beralih kepada putranya, Michael, perjalanan penuh intrik dan pengorbanan dimulai. Kisah ini mengeksplorasi tema pengkhianatan, kesetiaan, dan harga yang harus dibayar untuk ambisi kekuasaan.",
+      "director": "Francis Ford Coppola",
+      "country": "USA",
+      "duration": 175
+    },
+    {
+      "id": 4,
+      "title": "The Dark Knight",
+      "poster": {
+        "landscape": "/posters/landscape/the-dark-knight.jpg",
+        "portrait": "/posters/portrait/the-dark-knight.jpg"
+      },
+      "trailer_url": "https://www.youtube.com/watch?v=EXeTwQWrcwY",
+      "genres": ["Action", "Crime", "Drama"],
+      "rating": 4.7,
+      "release_date": "2008-07-18",
+      "synopsis": "Batman, sang pelindung Gotham, harus menghadapi ancaman terbesar dalam bentuk Joker, penjahat cerdas dan gila yang membawa kekacauan ke seluruh kota. Dengan bantuan Komisaris Gordon dan Harvey Dent, Batman berusaha menghentikan aksi teror Joker. Namun, konflik ini menguji batas moral Batman dan memaksanya mengambil keputusan sulit yang mengubah hidupnya selamanya. The Dark Knight mengisahkan perjuangan antara keadilan dan korupsi, serta pengorbanan untuk melindungi kota dari kehancuran.",
+      "director": "Christopher Nolan",
+      "country": "USA",
+      "duration": 152
+    },
+    {
+      "id": 5,
+      "title": "Parasite",
+      "poster": {
+        "landscape": "/posters/landscape/parasite.jpg",
+        "portrait": "/posters/portrait/parasite.jpg"
+      },
+      "trailer_url": "https://www.youtube.com/watch?v=SEUXfv87Wpk",
+      "genres": ["Drama", "Thriller", "Comedy"],
+      "rating": 8.6,
+      "release_date": "2019-05-30",
+      "synopsis": "Film ini mengisahkan tentang keluarga Ki-taek yang beranggotakan empat orang pengangguran dengan masa depan suram. Suatu hari, anak laki-laki keluarga tersebut, Ki-woo direkomendasikan untuk menjadi guru les bahasa Inggris pribadi di rumah keluarga Park yang kaya raya. Dengan membawa dokumen palsu atas bantuan adiknya yang ahli komputer, Ki-woo mulai mengajar di kediaman mewah tersebut. Keluarga Park yang naif dan baik hati tidak menyadari bahwa mereka telah membuka pintu mereka untuk serangkaian kejadian yang akan mengubah kehidupan kedua keluarga selamanya. Satu per satu, anggota keluarga Ki-taek mulai menyusup masuk ke dalam kehidupan keluarga Park dengan berbagai cara yang licik, membentuk hubungan parasit yang kompleks yang akan membawa mereka ke dalam situasi yang tak terduga dan mengejutkan. Film ini mengeksplorasi tema ketimpangan sosial, perjuangan kelas, dan keserakahan manusia dengan cara yang gelap namun menghibur.",
+      "director": "Bong Joon-ho",
+      "country": "South Korea",
+      "duration": 132
+    },
+    {
+      "id": 6,
+      "title": "Spirited Away",
+      "poster": {
+        "landscape": "/posters/landscape/spirited-away.jpg",
+        "portrait": "/posters/portrait/spirited-away.jpg"
+      },
+      "trailer_url": "https://www.youtube.com/watch?v=ByXuk9QqQkk",
+      "genres": ["Animation", "Adventure", "Family"],
+      "rating": 8.6,
+      "release_date": "2001-07-20",
+      "synopsis": "Chihiro, gadis berusia 10 tahun, bersama kedua orangtuanya sedang dalam perjalanan pindah ke rumah baru mereka. Namun, mereka tersesat dan menemukan sebuah terowongan misterius yang membawa mereka ke dunia yang tampak seperti taman hiburan terbengkalai. Tanpa disadari, ketika matahari terbenam, tempat tersebut berubah menjadi dunia spiritual yang dihuni oleh para dewa dan makhluk gaib. Tragisnya, kedua orangtua Chihiro dikutuk menjadi babi oleh penyihir jahat bernama Yubaba yang menguasai pemandian umum untuk para dewa. Untuk menyelamatkan orangtuanya dan kembali ke dunia manusia, Chihiro harus bekerja di pemandian tersebut. Dalam petualangannya, ia bertemu dengan Haku, seorang anak laki-laki misterius yang ternyata adalah roh sungai dalam wujud manusia, serta berbagai karakter unik lainnya. Chihiro harus menghadapi berbagai tantangan, menunjukkan keberanian, dan belajar tentang cinta, persahabatan, serta pengorbanan. Film ini mengeksplorasi tema-tema mendalam tentang pertumbuhan pribadi, identitas, keserakahan manusia, dan hubungan antara dunia manusia dengan alam dan dunia spiritual, semua dikemas dalam visual yang memukau dan cerita yang penuh makna.",
+      "director": "Hayao Miyazaki",
+      "country": "Japan",
+      "duration": 125
+    },
+    {
+      "id": 7,
+      "title": "Oppenheimer",
+      "poster": {
+        "landscape": "/posters/landscape/oppenheimer.webp",
+        "portrait": "/posters/portrait/oppenheimer.jpg"
+      },
+      "trailer_url": "https://www.youtube.com/watch?v=uYPbbksJxIg",
+      "genres": ["Biography", "Drama", "History"],
+      "rating": 8.4,
+      "release_date": "2023-07-21",
+      "synopsis": "Film biografis yang mengisahkan perjalanan hidup J. Robert Oppenheimer, fisikawan teoretis Amerika yang dikenal sebagai 'Bapak Bom Atom'. Film ini menelusuri kehidupannya dari masa mudanya sebagai akademisi berbakat hingga perannya yang kontroversial sebagai direktur Laboratorium Los Alamos dalam Proyek Manhattan selama Perang Dunia II. Dalam tekanan waktu dan beban moral yang luar biasa, Oppenheimer memimpin tim ilmuwan brilian untuk menciptakan senjata paling mematikan dalam sejarah manusia. Film ini menggali kompleksitas moral dan konflik batin yang dihadapi Oppenheimer, dampak penemuannya terhadap dunia, serta konsekuensi personal dan profesional yang harus dia tanggung pasca perang. Melalui penggambaran yang mendalam, film ini mengeksplorasi dilema etis tentang kemajuan ilmiah, tanggung jawab moral para ilmuwan, politik di masa perang, dan beban psikologis dari menciptakan senjata pemusnah massal, sambil memberikan gambaran detail tentang era bersejarah yang mengubah dunia selamanya.",
+      "director": "Christopher Nolan",
+      "country": "United States",
+      "duration": 180
+    },
+    {
+      "id": 8,
+      "title": "Whiplash",
+      "poster": {
+        "landscape": "/posters/landscape/whiplash.jpeg",
+        "portrait": "/posters/portrait/whiplash.jpg"
+      },
+      "trailer_url": "https://www.youtube.com/watch?v=7d_jQycdQGo",
+      "genres": ["Drama", "Music"],
+      "rating": 8.5,
+      "release_date": "2014-10-10",
+      "synopsis": "Film ini mengikuti perjalanan Andrew Neiman, seorang drummer jazz muda yang berbakat dan ambisius di konservatori musik paling bergengsi di New York. Hidupnya berubah drastis ketika dia terpilih untuk bergabung dengan band jazz utama sekolah yang dilatih oleh Terence Fletcher, seorang konduktor perfeksionis yang terkenal dengan metode pengajarannya yang brutal dan manipulatif. Fletcher menggunakan kombinasi dari intimidasi psikologis, kekerasan verbal, dan tekanan emosional yang intens untuk mendorong para muridnya mencapai potensi maksimal mereka. Andrew menjadi terobsesi untuk mendapatkan pengakuan Fletcher dan mencapai kesempurnaan dalam musiknya, bahkan jika itu berarti mengorbankan kesehatan fisik dan mentalnya, hubungan personalnya, dan hampir seluruh aspek kehidupannya yang lain. Film ini mengeksplorasi tema-tema mendalam tentang ambisi, perfeksionisme, hubungan guru-murid yang kompleks, dan pertanyaan filosofis tentang apakah keunggulan sejati membutuhkan pengorbanan kemanusiaan. Melalui dinamika yang intens antara kedua karakter utama, film ini mengajak penonton untuk merenungkan harga yang harus dibayar untuk mencapai keagungan.",
+      "director": "Damien Chazelle",
+      "country": "United States",
+      "duration": 106
+    }
+  ],
+  "schedules": [],
+  "transactions": []
+}
