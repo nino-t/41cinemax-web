@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import { LoginPage } from '@/pages/login'
+import LoginPage from '@/pages/login'
 import { RegisterPage } from '@/pages/register'
 import { HomePage } from '@/pages/home'
 import { MovieDetailPage } from '@/pages/movie-detail'

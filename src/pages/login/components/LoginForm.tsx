@@ -18,7 +18,7 @@ type FormValues = {
   remember_me: boolean
 }
 
-export const LoginPage = () => {
+const LoginForm = () => {
   const navigate = useNavigate()
   const { login: authLogin } = useAuth()
   const { openSnakebar } = useSnakebarState()
@@ -93,3 +93,5 @@ export const LoginPage = () => {
     </Form>
   )
 }
+
+export default LoginForm
