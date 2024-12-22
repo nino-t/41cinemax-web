@@ -10,6 +10,7 @@ import InputPassword from '@/components/molecules/InputPassword'
 import useSnakebarState from '@/hooks/useSnakebarState'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '@/hooks/useAuth'
 
 type FormValues = {
   email: string
@@ -19,8 +20,10 @@ type FormValues = {
 
 export const LoginPage = () => {
   const navigate = useNavigate()
+  const { login: authLogin } = useAuth()
   const { openSnakebar } = useSnakebarState()
 
+  // Mutation untuk proses login
   const { mutate: login, isLoading } = useMutation({
     mutationFn: (data: { email: string; password: string }) =>
       postMockLogin(data.email, data.password)
@@ -28,8 +31,15 @@ export const LoginPage = () => {
 
   const handleSubmit = (values: FormValues) => {
     login(values, {
-      onSuccess: () => {
+      onSuccess: ({ data: { id, name, email } }) => {
         openSnakebar('Successfully logged in to your account', 'success')
+
+        // Simpan informasi login user & redirect ke halaman home
+        authLogin({
+          id,
+          name,
+          email
+        })
         navigate('/')
       },
       onError: () => {
