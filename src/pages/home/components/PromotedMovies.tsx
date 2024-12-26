@@ -68,7 +68,7 @@ const PromotedMovies: React.FC = () => {
               <Text className="mt-4 mb-6">
                 {truncate(movie.synopsis, { length: 380 })}
               </Text>
-              <Button onClick={() => navigate(`/movies/${movie.id}`)} rounded>
+              <Button onClick={() => navigate(`/movie/${movie.id}`)} rounded>
                 <Play size={16} className="mr-2" />
                 See Details
               </Button>

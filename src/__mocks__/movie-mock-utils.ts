@@ -1,3 +1,21 @@
+import dayjs from 'dayjs'
+
+/**
+ * Utils untuk membuat array berisi tanggal berdasarkan range
+ * @param startDate
+ * @param endDate
+ * @returns
+ */
+export const getDateRange = (startDate: string, endDate: string) => {
+  const start = dayjs(startDate)
+  const end = dayjs(endDate)
+  const diffInDays = end.diff(start, 'day')
+
+  return Array.from({ length: diffInDays + 1 }, (_, index) => {
+    return start.add(index, 'day').format('YYYY-MM-DD')
+  })
+}
+
 /**
  * Utils untuk generate waktu tayang secara acak
  * @param options
@@ -74,8 +92,8 @@ const generateShowtimes = (
  * @param movieId
  * @returns
  */
-export const generateFakeSchedule = (movieId: number) => {
-  const date = new Date()
+export const generateFakeSchedule = (movieId: number, dateString?: string) => {
+  const date = new Date(dateString as string)
   const schedules = []
   const timeFrames = generateShowtimes({
     startHour: 8, // Mulai dari jam 8 pagi
@@ -84,7 +102,8 @@ export const generateFakeSchedule = (movieId: number) => {
     intervalMinutes: 90 // Jarak antar jadwal 1.5 jam
   })
 
-  for (let i = 0; i < 5; i++) {
+  // Hasilkan jadwal untuk 5 hari ke depan jika tidak ada tanggal yang diberikan
+  for (let i = 0; i < (dateString ? 1 : 5); i++) {
     date.setDate(date.getDate() + i)
     for (let j = 0; j < timeFrames.length; j++) {
       schedules.push({

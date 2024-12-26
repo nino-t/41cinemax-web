@@ -30,11 +30,8 @@ function App() {
         {/* Main Routes dengan MainLayout */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/movie/:id" element={<MovieDetailPage />} />
-          <Route
-            path="/booking/:movieId/:scheduleId"
-            element={<BookingPage />}
-          />
+          <Route path="/movie/:movieId" element={<MovieDetailPage />} />
+          <Route path="/movie/:movieId/booking" element={<BookingPage />} />
         </Route>
       </Routes>
 

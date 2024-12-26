@@ -1,7 +1,7 @@
 import { SimpleDB } from './simple-db'
 import dbJSON from './db.json'
 
-type DBSchema = {
+export type DBSchema = {
   users: Array<{
     id: number
     name: string

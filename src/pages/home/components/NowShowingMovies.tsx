@@ -24,8 +24,8 @@ const NowShowingMovies: React.FC = () => {
               releaseDate={release_date}
               genres={genres}
               rating={rating}
-              onGetTickets={() => navigate(`/movies/${id}/booking`)}
-              onSeeDetails={() => navigate(`/movies/${id}`)}
+              onGetTickets={() => navigate(`/movie/${id}/booking`)}
+              onSeeDetails={() => navigate(`/movie/${id}`)}
             />
           )
         )}

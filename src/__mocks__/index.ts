@@ -1,5 +1,5 @@
 import db from './db'
-import { generateFakeSchedule } from './movie-mock-utils'
+import { generateFakeSchedule, getDateRange } from './movie-mock-utils'
 
 /**
  * Delay 3 detik
@@ -76,8 +76,6 @@ export const postMockRegister = async (bodyRequest: {
  * @returns
  */
 export const getMockPromotedMovies = async (params: { limit: number }) => {
-  await delay()
-
   return {
     message: 'Data film promosi berhasil didapatkan!',
     data: db.find('movies', { is_promoted: true }).slice(0, params.limit)
@@ -90,8 +88,6 @@ export const getMockPromotedMovies = async (params: { limit: number }) => {
  * @returns
  */
 export const getMockMovies = async (params: { limit: number }) => {
-  await delay()
-
   return {
     message: 'Data film berhasil didapatkan!',
     data: db.getAll('movies').slice(0, params.limit)
@@ -104,8 +100,6 @@ export const getMockMovies = async (params: { limit: number }) => {
  * @returns
  */
 export const getMockMovieDetail = async (id: number) => {
-  await delay()
-
   const movie = db.findOne('movies', { id })
   if (!movie) {
     return Promise.reject({
@@ -126,11 +120,10 @@ export const getMockMovieDetail = async (id: number) => {
  * @param params - parameter tanggal
  * @returns
  */
-export const getMovieSchedule = async (
+export const getMockMovieSchedule = async (
   id: number,
   params: { start: string; end: string }
 ) => {
-  await delay()
   const getMovieSchedules = () => {
     return db.find('schedules', { movie_id: id }).filter((schedule) => {
       const date = new Date(schedule.date)
@@ -139,10 +132,15 @@ export const getMovieSchedule = async (
   }
 
   const schedules = getMovieSchedules()
-  if (!schedules.length) {
-    const fakeSchedules = generateFakeSchedule(id)
-    fakeSchedules.forEach((schedule) => db.push('schedules', schedule))
-  }
+  const rangeList = getDateRange(params.start, params.end)
+
+  rangeList.forEach((date) => {
+    const dateSchedules = schedules.filter((schedule) => schedule.date === date)
+    if (!dateSchedules.length) {
+      const fakeSchedules = generateFakeSchedule(id, date)
+      fakeSchedules.forEach((schedule) => db.push('schedules', schedule))
+    }
+  })
 
   return {
     message: 'Data jadwal film berhasil didapatkan!',
@@ -156,7 +154,6 @@ export const getMovieSchedule = async (
  * @returns
  */
 export const getMockScheduleBookedSeat = async (scheduleId: number) => {
-  await delay()
   const transactions = db.find('transactions', { schedule_id: scheduleId })
 
   return {
