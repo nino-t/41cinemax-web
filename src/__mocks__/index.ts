@@ -2,10 +2,12 @@ import db from './db'
 import { generateFakeSchedule, getDateRange } from './movie-mock-utils'
 
 /**
- * Delay 3 detik
+ * Delay untuk simulasi loading
+ * @param timeout
  * @returns
  */
-const delay = () => new Promise((resolve) => setTimeout(resolve, 3000))
+const delay = (timeout = 3000) =>
+  new Promise((resolve) => setTimeout(resolve, timeout))
 
 /**
  * Mock service yang digunakan untuk login
@@ -142,6 +144,7 @@ export const getMockMovieSchedule = async (
     }
   })
 
+  await delay(500)
   return {
     message: 'Data jadwal film berhasil didapatkan!',
     data: getMovieSchedules()

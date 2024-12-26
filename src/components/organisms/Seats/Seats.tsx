@@ -46,7 +46,7 @@ const Seats: React.FC<SeatsProps> = ({
   }
 
   return (
-    <div className={`w-full ${className}`}>
+    <div className={`w-full flex items-center flex-col ${className}`}>
       <CinemaScreen />
       <div className="mb-6" />
       <div className="grid gap-y-4 mb-6">

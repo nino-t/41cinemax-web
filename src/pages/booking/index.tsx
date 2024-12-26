@@ -1,5 +1,159 @@
+import { useEffect, useMemo, useState } from 'react'
+import dayjs from 'dayjs'
+import groupBy from 'lodash/groupBy'
+import { useQuery } from 'react-query'
+import { useParams, useSearchParams } from 'react-router-dom'
+import { DBSchema } from '@/__mocks__/db'
+import Breadcrumb from '@/components/molecules/Breadcrumb'
+import Section from '@/components/atoms/Section'
+import Seats from '@/components/organisms/Seats'
+import { generateSeats } from '@/utils/seat-utils'
+import { getMockMovieSchedule, getMockScheduleBookedSeat } from '@/__mocks__'
+import LayoutBooking from './components/LayoutBooking'
+import Button from '@/components/atoms/Button'
+import Flexbox from '@/components/atoms/Flexbox'
+import CinemaDate from '@/components/organisms/CinemaDate'
+import CinemaTime from '@/components/organisms/CinemaTime'
+
+const sampleSeats = generateSeats({
+  rowCount: 6,
+  columnCount: 16,
+  reservedSeats: []
+})
+
 const BookingPage = () => {
-  return <div>Booking Page</div>
+  const { movieId } = useParams()
+  const [searchParams] = useSearchParams()
+  const [movie, setMovie] = useState<DBSchema['movies'][0]>()
+  const [selectedDate, setSelectedDate] = useState<string>()
+  const [selectedTime, setSelectedTime] = useState<string>()
+  const [stateSeats, setStateSeats] = useState(() => sampleSeats)
+
+  // Ambil schedule 6 hari dari sekarang
+  const { data: dataSchedule } = useQuery(['movie', movieId, 'schedules'], () =>
+    getMockMovieSchedule(Number(movieId), {
+      start: dayjs().format('YYYY-MM-DD'),
+      end: dayjs().add(6, 'day').format('YYYY-MM-DD')
+    })
+  )
+  const schedules = useMemo(() => dataSchedule?.data, [dataSchedule])
+
+  // Ambil datetime dari query string
+  const qsDatetime = searchParams.get('datetime')
+  useEffect(() => {
+    if (qsDatetime) {
+      const [date, time] = qsDatetime.split(' ')
+      setSelectedDate(date)
+      setSelectedTime(time)
+      return
+    }
+
+    // Set tanggal pertama sebagai default selected date
+    setSelectedDate(schedules?.[0].date)
+    setSelectedTime(schedules?.[0].time)
+  }, [qsDatetime, schedules])
+
+  const selectedSchedule = useMemo(() => {
+    return schedules?.find(
+      (schedule) =>
+        schedule.date === selectedDate && schedule.time === selectedTime
+    )
+  }, [schedules, selectedDate, selectedTime])
+
+  // Ambil booked seat dari schedule yang dipilih
+  const { data: dataBookedSeat } = useQuery(
+    ['movie-schedules', selectedSchedule?.id, 'seats-booked'],
+    () => getMockScheduleBookedSeat(selectedSchedule?.id || 0)
+  )
+  const bookedSeats = useMemo(
+    () => dataBookedSeat?.data || [],
+    [dataBookedSeat]
+  )
+
+  // Update status reserved pada seat yang sudah dibooking
+  useEffect(() => {
+    const updatedSeats = stateSeats.map((seat) => {
+      if (bookedSeats.includes(seat.id)) {
+        return { ...seat, reserved: true }
+      }
+      return seat
+    })
+    setStateSeats(updatedSeats)
+  }, [bookedSeats])
+
+  // Update status selected pada seat yang dipilih
+  const updateSeatStatus = (seatId: string, selected: boolean) => {
+    const updatedSeats = stateSeats.map((seat) => {
+      if (seat.id === seatId) {
+        return { ...seat, selected }
+      }
+      return seat
+    })
+    setStateSeats(updatedSeats)
+  }
+
+  // Kelompokkan schedule berdasarkan tanggal
+  const groupSchedulesByDate = useMemo(() => {
+    return groupBy(schedules, 'date')
+  }, [schedules])
+
+  return (
+    <>
+      <Breadcrumb
+        items={[
+          { label: 'Home', to: '/' },
+          { label: movie?.title || '', to: `/movie/${movie?.id}` },
+          { label: 'Booking' }
+        ]}
+        className="mb-2"
+      />
+      <Section>
+        <LayoutBooking onFetched={setMovie}>
+          <Flexbox gap={16} justify="between" className="mb-8">
+            <CinemaDate
+              className="w-[calc(60%-4rem)]"
+              value={selectedDate}
+              onChange={(date) => setSelectedDate(date)}
+            />
+            <CinemaTime
+              className="w-[40%]"
+              value={selectedTime}
+              onChange={(time) => setSelectedTime(time)}
+              times={
+                groupSchedulesByDate?.[selectedDate as string]?.map(
+                  ({ time }) => {
+                    return {
+                      label: '3D',
+                      value: time
+                    }
+                  }
+                ) || []
+              }
+            />
+          </Flexbox>
+
+          <Seats
+            seats={stateSeats}
+            onSeatSelect={({ id, selected }) => {
+              updateSeatStatus(id, !selected)
+            }}
+            maxSelect={6}
+            spaceInColumns={[5, 9, 13]}
+          />
+
+          <Button
+            variant="primary"
+            className="mt-10"
+            disabled={!stateSeats.find(({ selected }) => selected === true)}
+            onClick={() => {}}
+            fullWidth
+          >
+            Buy Tickets
+          </Button>
+        </LayoutBooking>
+      </Section>
+    </>
+  )
 }
 
 export default BookingPage

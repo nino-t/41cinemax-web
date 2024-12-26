@@ -20,7 +20,7 @@ const MovieSchedules: React.FC<{ movieId: number }> = ({ movieId }) => {
   const { data } = useQuery(['movie', movieId, 'schedules'], () =>
     getMockMovieSchedule(movieId, {
       start: dayjs().format('YYYY-MM-DD'),
-      end: dayjs().add(5, 'day').format('YYYY-MM-DD')
+      end: dayjs().add(6, 'day').format('YYYY-MM-DD')
     })
   )
   const schedules = useMemo(() => data?.data, [data])
