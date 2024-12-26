@@ -15,7 +15,7 @@ const RegisterPage: React.FC = () => {
       <RegisterForm />
       <Text className="text-center mt-6">
         Already have an account?{' '}
-        <TextAnchor onClick={() => navigate('/auth/login')}>Log in</TextAnchor>
+        <TextAnchor onClick={() => navigate('/login')}>Log in</TextAnchor>
       </Text>
     </>
   )

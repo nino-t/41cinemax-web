@@ -7,6 +7,7 @@ import BookingPage from '@/pages/booking'
 import AuthLayout from '@/components/templates/AuthLayout'
 import useSnakebarState from '@/hooks/useSnakebarState'
 import Snackbar from '@/components/molecules/Snackbar'
+import MainLayout from '@/components/templates/MainLayout'
 
 function App() {
   // Hook untuk mengelola state Snackbar
@@ -27,9 +28,14 @@ function App() {
         </Route>
 
         {/* Main Routes dengan MainLayout */}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/movie/:id" element={<MovieDetailPage />} />
-        <Route path="/booking/:movieId/:scheduleId" element={<BookingPage />} />
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movie/:id" element={<MovieDetailPage />} />
+          <Route
+            path="/booking/:movieId/:scheduleId"
+            element={<BookingPage />}
+          />
+        </Route>
       </Routes>
 
       {/* Global Snackbar untuk feedback */}

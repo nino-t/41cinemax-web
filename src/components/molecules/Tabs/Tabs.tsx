@@ -18,6 +18,7 @@ const Tabs: React.FC<TabProps> = ({
       >
         {tabs?.map(({ key, label }) => (
           <button
+            key={key}
             onClick={() => handleTabClick(key)}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
               activeTab === key

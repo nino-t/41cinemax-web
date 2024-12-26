@@ -30,7 +30,8 @@
       "synopsis": "Seorang pencuri yang memiliki kemampuan untuk memasuki mimpi orang lain dan mencuri rahasia berharga dari alam bawah sadar. Saat dihadapkan dengan misi terakhir yang sulit, ia harus menanamkan ide di pikiran targetnya. Namun, semakin dalam ia masuk ke dunia mimpi, semakin berbahaya tantangan yang dihadapi, mengaburkan garis antara realitas dan imajinasi, serta mempertaruhkan nyawa dan kewarasannya sendiri.",
       "director": "Christopher Nolan",
       "country": "USA",
-      "duration": 148
+      "duration": 148,
+      "is_promoted": true
     },
     {
       "id": 2,
@@ -46,7 +47,8 @@
       "synopsis": "Seorang bankir bernama Andy Dufresne dipenjara seumur hidup atas tuduhan pembunuhan yang tidak pernah dilakukannya. Di dalam Penjara Shawshank yang terkenal kejam, ia menemukan harapan dan persahabatan sejati dengan sesama narapidana bernama Red. Dengan kecerdasan dan ketekunan, Andy secara perlahan mengubah kehidupan para tahanan dan mengguncang fondasi penjara. Kisah ini mengangkat tema keadilan, pengampunan, dan kekuatan harapan dalam menghadapi kesulitan.",
       "director": "Frank Darabont",
       "country": "USA",
-      "duration": 142
+      "duration": 142,
+      "is_promoted": true
     },
     {
       "id": 3,
@@ -62,7 +64,8 @@
       "synopsis": "The Godfather menceritakan kisah keluarga mafia Corleone di New York pada era 1940-an hingga 1950-an. Vito Corleone, kepala keluarga, berjuang menjaga kehormatan dan kekuasaan klannya di tengah persaingan dengan keluarga mafia lainnya. Ketika kekuasaan beralih kepada putranya, Michael, perjalanan penuh intrik dan pengorbanan dimulai. Kisah ini mengeksplorasi tema pengkhianatan, kesetiaan, dan harga yang harus dibayar untuk ambisi kekuasaan.",
       "director": "Francis Ford Coppola",
       "country": "USA",
-      "duration": 175
+      "duration": 175,
+      "is_promoted": true
     },
     {
       "id": 4,
@@ -78,7 +81,8 @@
       "synopsis": "Batman, sang pelindung Gotham, harus menghadapi ancaman terbesar dalam bentuk Joker, penjahat cerdas dan gila yang membawa kekacauan ke seluruh kota. Dengan bantuan Komisaris Gordon dan Harvey Dent, Batman berusaha menghentikan aksi teror Joker. Namun, konflik ini menguji batas moral Batman dan memaksanya mengambil keputusan sulit yang mengubah hidupnya selamanya. The Dark Knight mengisahkan perjuangan antara keadilan dan korupsi, serta pengorbanan untuk melindungi kota dari kehancuran.",
       "director": "Christopher Nolan",
       "country": "USA",
-      "duration": 152
+      "duration": 152,
+      "is_promoted": true
     },
     {
       "id": 5,
