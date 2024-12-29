@@ -165,6 +165,43 @@ export const getMockScheduleBookedSeat = async (scheduleId: number) => {
   }
 }
 
+export const getMockPreviewBooking = async (
+  movieId: number,
+  params: { seats: string[]; datetime: string }
+) => {
+  const schedule = db.findOne('schedules', {
+    movie_id: movieId,
+    date: params.datetime.split(' ')[0],
+    time: params.datetime.split(' ')[1]
+  })
+
+  const movie = db.findOne('movies', { id: movieId })
+
+  if (!schedule || !movie) {
+    return Promise.reject({
+      message: 'Data tidak ditemukan!',
+      data: null
+    })
+  }
+
+  const adminFee = 5000 // Biaya admin
+  const ticketPrice = schedule.price || 0
+  return {
+    message: 'Data preview booking berhasil didapatkan!',
+    data: {
+      schedule_id: schedule.id,
+      movie_id: movie.id,
+      movie_title: movie.title,
+      seats: params.seats,
+      date: params.datetime.split(' ')[0],
+      hour: params.datetime.split(' ')[1],
+      ticket_price: ticketPrice,
+      admin_fee: adminFee,
+      total_amount: params.seats.length * ticketPrice + adminFee
+    }
+  }
+}
+
 /**
  * Mock service yang digunakan untuk memesan kursi
  * @param bodyRequest
@@ -181,7 +218,7 @@ export const postMockBookSeat = async (bodyRequest: {
   const { movie_id, schedule_id, seat_numbers, total_price } = bodyRequest
   const id = db.getAll('transactions').length + 1
 
-  const transactionCreated = await db.push('transactions', {
+  await db.push('transactions', {
     id,
     user_id: 1,
     movie_id,
@@ -193,6 +230,6 @@ export const postMockBookSeat = async (bodyRequest: {
 
   return {
     message: 'Berhasil memesan kursi!',
-    data: transactionCreated
+    data: null
   }
 }

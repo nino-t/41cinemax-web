@@ -11,6 +11,7 @@ import useSnakebarState from '@/hooks/useSnakebarState'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
+import dbJSON from '@/__mocks__/db.json'
 
 type FormValues = {
   email: string
@@ -52,7 +53,15 @@ const LoginForm = () => {
   }
 
   return (
-    <Form onSubmit={handleSubmit} className="mt-8 space-y-6">
+    <Form
+      onSubmit={handleSubmit}
+      className="mt-8 space-y-6"
+      defaultValues={{
+        email: dbJSON.users[0].email,
+        password: dbJSON.users[0].password,
+        remember_me: false
+      }}
+    >
       <FormField
         name="email"
         label="Email"

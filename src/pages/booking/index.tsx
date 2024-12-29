@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import dayjs from 'dayjs'
 import groupBy from 'lodash/groupBy'
 import { useQuery } from 'react-query'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { DBSchema } from '@/__mocks__/db'
 import Breadcrumb from '@/components/molecules/Breadcrumb'
 import Section from '@/components/atoms/Section'
@@ -14,6 +14,9 @@ import Button from '@/components/atoms/Button'
 import Flexbox from '@/components/atoms/Flexbox'
 import CinemaDate from '@/components/organisms/CinemaDate'
 import CinemaTime from '@/components/organisms/CinemaTime'
+import BookingConfirmation from './components/BookingConfirmation'
+import { useAuth } from '@/hooks/useAuth'
+import useSnakebarState from '@/hooks/useSnakebarState'
 
 const sampleSeats = generateSeats({
   rowCount: 6,
@@ -22,12 +25,24 @@ const sampleSeats = generateSeats({
 })
 
 const BookingPage = () => {
+  const navigate = useNavigate()
   const { movieId } = useParams()
+  const { isAuthenticated } = useAuth()
+  const { openSnakebar } = useSnakebarState()
   const [searchParams] = useSearchParams()
   const [movie, setMovie] = useState<DBSchema['movies'][0]>()
   const [selectedDate, setSelectedDate] = useState<string>()
   const [selectedTime, setSelectedTime] = useState<string>()
   const [stateSeats, setStateSeats] = useState(() => sampleSeats)
+  const [showConfirmation, setShowConfirmation] = useState(false)
+
+  useEffect(() => {
+    // Redirect ke halaman login jika user belum login
+    if (!isAuthenticated) {
+      navigate('/login', { replace: true })
+      openSnakebar('You need to login first to access this page', 'error')
+    }
+  }, [isAuthenticated, navigate, openSnakebar])
 
   // Ambil schedule 6 hari dari sekarang
   const { data: dataSchedule } = useQuery(['movie', movieId, 'schedules'], () =>
@@ -74,7 +89,7 @@ const BookingPage = () => {
   useEffect(() => {
     const updatedSeats = stateSeats.map((seat) => {
       if (bookedSeats.includes(seat.id)) {
-        return { ...seat, reserved: true }
+        return { ...seat, selected: false, reserved: true }
       }
       return seat
     })
@@ -96,6 +111,11 @@ const BookingPage = () => {
   const groupSchedulesByDate = useMemo(() => {
     return groupBy(schedules, 'date')
   }, [schedules])
+
+  // Ambil kursi yang dipilih
+  const selectedSeats = stateSeats
+    .filter(({ selected }) => selected)
+    .map(({ id }) => id)
 
   return (
     <>
@@ -145,13 +165,24 @@ const BookingPage = () => {
             variant="primary"
             className="mt-10"
             disabled={!stateSeats.find(({ selected }) => selected === true)}
-            onClick={() => {}}
+            onClick={() => setShowConfirmation(true)}
             fullWidth
           >
             Buy Tickets
           </Button>
         </LayoutBooking>
       </Section>
+
+      {showConfirmation && (
+        <BookingConfirmation
+          movieId={movie?.id || 0}
+          bookingDateTime={`${selectedDate} ${selectedTime}`}
+          seats={selectedSeats}
+          onCancel={() => {
+            setShowConfirmation(false)
+          }}
+        />
+      )}
     </>
   )
 }
