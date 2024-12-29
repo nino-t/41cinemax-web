@@ -7,6 +7,8 @@ import MovieCard from '@/components/organisms/MovieCard'
 
 const NowShowingMovies: React.FC = () => {
   const navigate = useNavigate()
+
+  // Mengambil data mock film sebanyak 8 data
   const { data } = useQuery(['onshowing-movies'], () =>
     getMockMovies({ limit: 8 })
   )

@@ -1,6 +1,6 @@
+import { useState } from 'react'
 import Tabs from '@/components/molecules/Tabs'
 import PromotedMovies from './components/PromotedMovies'
-import { useState } from 'react'
 import UpcomingMovies from './components/UpcomingMovies'
 import NowShowingMovies from './components/NowShowingMovies'
 

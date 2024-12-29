@@ -13,8 +13,8 @@ const ScheduleDateItem: React.FC<Props> = ({ date, selected, onClick }) => {
   const textColor = selected ? 'text-white' : '!text-[#EEBD79]'
   const backgroundColor = selected ? 'bg-[#EEBD79]' : 'bg-[#F1E8DC]'
 
-  const dateMonth = date.format('MMMM')
-  const dateNumber = date.format('DD')
+  const dateMonth = date.format('MMMM') // Nama bulan
+  const dateNumber = date.format('DD') // Nomor tanggal
 
   return (
     <Flexbox

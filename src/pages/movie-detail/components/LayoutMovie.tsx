@@ -15,10 +15,13 @@ const LayoutMovie: React.FC<
   }>
 > = ({ onFetched, children }) => {
   const { movieId } = useParams()
+
+  // Mengambil data movie berdasarkan Movie ID
   const { data } = useQuery(['movie', movieId], () =>
     getMockMovieDetail(Number(movieId))
   )
 
+  // Kembalikan data movie ke parent component
   const movie = data?.data
   useEffect(() => {
     onFetched(movie)

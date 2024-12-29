@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { DBSchema } from '@/__mocks__/db'
-import LayoutMovie from './components/LayoutMovie'
 import Breadcrumb from '@/components/molecules/Breadcrumb'
+import LayoutMovie from './components/LayoutMovie'
 import MovieSchedules from './components/MovieSchedules'
 
 const MovieDetailPage = () => {

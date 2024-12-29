@@ -1,15 +1,15 @@
 import React from 'react'
-import { useQuery } from 'react-query'
+import { Play } from 'lucide-react'
 import truncate from 'lodash/truncate'
+import { useQuery } from 'react-query'
+import { styled } from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 import { getMockPromotedMovies } from '@/__mocks__'
 import Carousel from '@/components/atoms/Carousel'
 import Flexbox from '@/components/atoms/Flexbox'
 import Text from '@/components/atoms/Text'
 import YoutubePlayer from '@/components/organisms/YoutubePlayer'
 import Button from '@/components/atoms/Button'
-import { Play } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
-import { styled } from 'styled-components'
 
 const Wrapper = styled.div`
   position: relative;
@@ -45,6 +45,8 @@ const Wrapper = styled.div`
 
 const PromotedMovies: React.FC = () => {
   const navigate = useNavigate()
+
+  // Mengambil data mock film promosi sebanyak 4 data
   const { data } = useQuery(['promoted-movies'], () =>
     getMockPromotedMovies({ limit: 4 })
   )
