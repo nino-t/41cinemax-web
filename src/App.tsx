@@ -8,6 +8,8 @@ import AuthLayout from '@/components/templates/AuthLayout'
 import useSnakebarState from '@/hooks/useSnakebarState'
 import Snackbar from '@/components/molecules/Snackbar'
 import MainLayout from '@/components/templates/MainLayout'
+import { useEffect } from 'react'
+import { initDB } from './__mocks__/db'
 
 function App() {
   // Hook untuk mengelola state Snackbar
@@ -17,6 +19,11 @@ function App() {
     severity,
     closeSnakebar
   } = useSnakebarState()
+
+  // Inisialisasi mock-data saat aplikasi pertama kali di-load
+  useEffect(() => {
+    initDB()
+  }, [])
 
   return (
     <>

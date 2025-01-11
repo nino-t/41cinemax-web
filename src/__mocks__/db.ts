@@ -45,6 +45,10 @@ export type DBSchema = {
 }
 
 const db = new SimpleDB<DBSchema>('41cinemax_db', dbJSON)
-await db.init()
+
+export const initDB = async () => {
+  await db.init()
+  return db
+}
 
 export default db
