@@ -1,4 +1,4 @@
-import db from './db'
+import db, { initDB } from './db'
 import { generateFakeSchedule, getDateRange } from './movie-mock-utils'
 
 /**
@@ -16,6 +16,7 @@ const delay = (timeout = 3000) =>
  * @returns
  */
 export const postMockLogin = async (email: string, password: string) => {
+  await initDB()
   await delay()
   const findUser = db.findOne('users', { email, password })
 
@@ -47,6 +48,7 @@ export const postMockRegister = async (bodyRequest: {
   phone: string
   password: string
 }) => {
+  await initDB()
   await delay()
   const { name, email } = bodyRequest
 
@@ -78,6 +80,7 @@ export const postMockRegister = async (bodyRequest: {
  * @returns
  */
 export const getMockPromotedMovies = async (params: { limit: number }) => {
+  await initDB()
   return {
     message: 'Data film promosi berhasil didapatkan!',
     data: db.find('movies', { is_promoted: true }).slice(0, params.limit)
@@ -90,6 +93,7 @@ export const getMockPromotedMovies = async (params: { limit: number }) => {
  * @returns
  */
 export const getMockMovies = async (params: { limit: number }) => {
+  await initDB()
   return {
     message: 'Data film berhasil didapatkan!',
     data: db.getAll('movies').slice(0, params.limit)
@@ -102,6 +106,7 @@ export const getMockMovies = async (params: { limit: number }) => {
  * @returns
  */
 export const getMockMovieDetail = async (id: number) => {
+  await initDB()
   const movie = db.findOne('movies', { id })
   if (!movie) {
     return Promise.reject({
@@ -126,6 +131,7 @@ export const getMockMovieSchedule = async (
   id: number,
   params: { start: string; end: string }
 ) => {
+  await initDB()
   const getMovieSchedules = () => {
     return db.find('schedules', { movie_id: id }).filter((schedule) => {
       const date = new Date(schedule.date)
@@ -157,6 +163,7 @@ export const getMockMovieSchedule = async (
  * @returns
  */
 export const getMockScheduleBookedSeat = async (scheduleId: number) => {
+  await initDB()
   const transactions = db.find('transactions', { schedule_id: scheduleId })
 
   return {
@@ -169,6 +176,7 @@ export const getMockPreviewBooking = async (
   movieId: number,
   params: { seats: string[]; datetime: string }
 ) => {
+  await initDB()
   const schedule = db.findOne('schedules', {
     movie_id: movieId,
     date: params.datetime.split(' ')[0],
@@ -214,6 +222,7 @@ export const postMockBookSeat = async (bodyRequest: {
   seat_numbers: Array<string>
   total_price: number
 }) => {
+  await initDB()
   await delay()
   const { movie_id, schedule_id, seat_numbers, total_price } = bodyRequest
   const id = db.getAll('transactions').length + 1
