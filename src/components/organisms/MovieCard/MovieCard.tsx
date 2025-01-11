@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { Eye, Ticket } from 'lucide-react'
-
 import Button from '@/components/atoms/Button'
 import Flexbox from '@/components/atoms/Flexbox'
 import Text from '@/components/atoms/Text'

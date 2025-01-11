@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react'
-
 import Text from '../../atoms/Text'
 import { TextAnchorProps } from './TextAnchor.interface'
 

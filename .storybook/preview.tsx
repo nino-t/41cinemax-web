@@ -1,3 +1,5 @@
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import type { Preview } from '@storybook/react'
 import '../src/index.css'
 
@@ -9,7 +11,14 @@ const preview: Preview = {
         date: /Date$/i
       }
     }
-  }
+  },
+  decorators: [
+    (Story) => (
+      <BrowserRouter>
+        <Story />
+      </BrowserRouter>
+    )
+  ]
 }
 
 export default preview
